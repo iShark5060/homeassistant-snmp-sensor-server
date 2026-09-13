@@ -7,7 +7,9 @@
 ![amd64](https://img.shields.io/badge/amd64-yes-green.svg?style=flat-square)
 [![Cursor](https://img.shields.io/badge/Cursor-IDE-141414?logo=cursor&logoColor=white&style=flat-square)](https://cursor.com)
 
-Home Assistant add-on that runs Net-SNMP `snmpd` on UDP **161**. Access is `off`, `v2c`, `v3`, or both. SNMPv3 is SHA-256 auth and AES-128 privacy. Optional entity `state` strings go through Net-SNMP `extend`, not a custom enterprise tree:
+Home Assistant add-on that runs Net-SNMP `snmpd` on UDP **161**. Point LibreNMS, or anything else that speaks SNMP, at the box and read entity states without inventing a custom MIB.
+
+Access is `off`, `v2c`, `v3`, or both. SNMPv3 is SHA-256 auth and AES-128 privacy. Entity `state` strings go through Net-SNMP `extend`, not a custom enterprise tree:
 
 `NET-SNMP-EXTEND-MIB::nsExtendOutput1Line."<entity_id>"`
 
