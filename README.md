@@ -7,60 +7,15 @@
 ![amd64](https://img.shields.io/badge/amd64-yes-green.svg?style=flat-square)
 [![Cursor](https://img.shields.io/badge/Cursor-IDE-141414?logo=cursor&logoColor=white&style=flat-square)](https://cursor.com)
 
-<<<<<<< Updated upstream
-Home Assistant add-on that runs Net-SNMP `snmpd` on UDP **161**. Access is `off`, `v2c`, `v3`, or both. SNMPv3 is SHA-256 auth and AES-128 privacy. Optional entity `state` strings go through Net-SNMP `extend`, not a custom enterprise tree:
-=======
 Home Assistant add-on that runs Net-SNMP `snmpd` on UDP **161**. Point LibreNMS, or anything else that speaks SNMP, at the box and read entity states without inventing a custom MIB.
 
-Access is `off`, `v2c`, `v3`, or both. SNMPv3 is SHA-256 auth and AES-128 privacy. Entity `state` strings go out through Net-SNMP `extend`, not a custom enterprise tree:
->>>>>>> Stashed changes
+Access is `off`, `v2c`, `v3`, or both. SNMPv3 is SHA-256 auth and AES-128 privacy. Entity `state` strings go through Net-SNMP `extend`, not a custom enterprise tree:
 
 `NET-SNMP-EXTEND-MIB::nsExtendOutput1Line."<entity_id>"`
 
 Fork of [PecceG2/Home-Assistant-SNMP-Sensor-Server](https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server) (itself from [darthsebulba04/hassio-snmpd](https://github.com/darthsebulba04/hassio-snmpd/)). Options: [DOCS.md](DOCS.md).
 
-<<<<<<< Updated upstream
 Add the repository `https://github.com/iShark5060/Home-Assistant-SNMP-Sensor-Server` in **Settings → Add-ons → Add-on store → ⋮ → Repositories**, then install **SNMP Sensor Server**.
-=======
-`sysName`, `sysLocation`, and `sysContact` come from the options. This is not a full host agent. Disk, load, and memory checks are not configured.
-
-64-bit Home Assistant only: **aarch64** and **amd64**. Entity exposure needs Supervisor (`homeassistant_api`).
-
-## Installation
-
-1. In Home Assistant, open **Settings** → **Add-ons** → **Add-on store**.
-2. Open the menu (**⋮**) → **Repositories**.
-3. Add `https://github.com/iShark5060/Home-Assistant-SNMP-Sensor-Server`
-4. Refresh the add-on store, then find **SNMP Sensor Server** and install it.
-
-## Configuration
-
-Default UDP port is **161**. Full option list: **[DOCS.md](DOCS.md)**.
-
-```yaml
-sysname: Home Assistant
-community: public
-location: Home
-name: RPi
-email: rpi@me.com
-expose_sensors: true
-sensors_to_expose: all
-snmp_version: v2c
-v3_username: hass
-v3_auth_passphrase: ""
-v3_priv_passphrase: ""
-```
-
-`sensors_to_expose` is `all` (every entity_id, not only `sensor.*`) or a comma-separated whitelist with `*` wildcards, for example `sensor.temperature_*,light.*`.
-
-`snmp_version` is `off`, `v2c`, `v3`, or `v2c+v3`. For v3, set `v3_username` and both passphrases (8+ characters).
-
-If you are upgrading from 1.5.x and start fails on an unknown option, delete `expose_sensors_OID_base` from the add-on YAML. That field never drove OIDs and is gone.
-
-### Query
-
-v2c, from another host:
->>>>>>> Stashed changes
 
 ```bash
 snmpwalk -v2c -c public <home-assistant-ip> NET-SNMP-EXTEND-MIB::nsExtendOutput1Line
@@ -75,12 +30,6 @@ snmpwalk -v2c -c public <home-assistant-ip> NET-SNMP-EXTEND-MIB::nsExtendOutput1
 - v3 passphrases must be 8+ characters. `createUser` is written before snmpd starts; adding it while snmpd is already running is discarded on shutdown.
 - Upgrading from 1.5.x: delete `expose_sensors_OID_base` from the add-on YAML if start fails on an unknown option. That field never drove OIDs.
 
-<<<<<<< Updated upstream
 ## License
 
 MIT. See [LICENSE.md](LICENSE.md).
-=======
-## Credits
-
-This fork continues **[PecceG2/Home-Assistant-SNMP-Sensor-Server](https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server)**, which extended **[darthsebulba04/hassio-snmpd](https://github.com/darthsebulba04/hassio-snmpd/)**. MIT. See `LICENSE.md`.
->>>>>>> Stashed changes
